@@ -1,15 +1,23 @@
 import Ember from 'ember';
 import appboy from 'appboy';
-import config from 'ember-get-config';
 
 const { Logger: { assert } } = Ember;
 
-export function initialize(/* application */) {
+export function initialize(application) {
+  const config = application.resolveRegistration('config:environment');
   assert(
     config.appboy.apiKey !== undefined,
     'You must set appboy.apiKey in your environment.js file for ember-appboy to work correctly.'
   );
+
+  // This is the "recommended" quickstart for appboy
+  // https://github.com/Appboy/appboy-web-sdk#getting-started
   appboy.initialize(config.appboy.apiKey);
+
+  if (!config.appboy.coreOnly) {
+    appboy.display.automaticallyShowNewInAppMessages();
+  }
+
   appboy.openSession();
 }
 
