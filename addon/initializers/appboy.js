@@ -4,6 +4,7 @@ import appboy from 'appboy';
 const { Logger: { assert } } = Ember;
 
 export function initialize(application) {
+  // TODO: 1.13.x support
   const config = application.resolveRegistration('config:environment');
   assert(
     config.appboy.apiKey !== undefined,
