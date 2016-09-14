@@ -5,7 +5,7 @@ const { ab: { InAppMessage: { ClickAction } } } = appboy;
 const { Logger: { assert } } = Ember;
 
 export function initialize(appInstance) {
-  // TODO: 1.13.x support
+  // TODO: Ember 1.13
   const config = appInstance.resolveRegistration('config:environment');
   assert(
     config.appboy.apiKey !== undefined,
