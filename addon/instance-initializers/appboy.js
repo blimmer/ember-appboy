@@ -12,8 +12,6 @@ export function initialize(appInstance) {
     'You must set appboy.apiKey in your environment.js file for ember-appboy to work correctly.'
   );
 
-  // This is the "recommended" quickstart for appboy
-  // https://github.com/Appboy/appboy-web-sdk#getting-started
   appboy.initialize(config.appboy.apiKey);
 
   if (!config.appboy.coreOnly) {
@@ -24,8 +22,10 @@ export function initialize(appInstance) {
     appboy.display.showInAppMessage = function(inAppMessage) {
       const router = appInstance.get('router');
 
-      // If URI is set, use router for soft transition with router.js vs. hard
-      // redirect / refresh
+      // If the message or buttons within the message have a URI, we need
+      // to grab the URI and hide it from appboy to do a "soft" transition
+      // with the Ember Router vs. an anchor tag, which causes the app to
+      // refresh when clicked.
       [inAppMessage, ...inAppMessage.buttons].forEach(function(item) {
         if (item.clickAction === ClickAction.URI && item.uri) {
           const uri = item.uri;
