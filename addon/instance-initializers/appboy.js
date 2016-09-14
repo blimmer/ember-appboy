@@ -4,16 +4,6 @@ import appboy from 'appboy';
 const { ab: { InAppMessage: { ClickAction } } } = appboy;
 const { Logger: { assert } } = Ember;
 
-export function rewireUriClickEvent(item, uri, router) {
-  item.subscribeToClickedEvent(() => {
-    router.transitionTo(uri);
-  });
-  item.clickAction = ClickAction.NULL;
-  item.uri = undefined;
-
-  return item;
-}
-
 export function initialize(appInstance) {
   // TODO: Ember 1.13
   const config = appInstance.resolveRegistration('config:environment');
@@ -38,7 +28,16 @@ export function initialize(appInstance) {
       // redirect / refresh
       [inAppMessage, ...inAppMessage.buttons].forEach(function(item) {
         if (item.clickAction === ClickAction.URI && item.uri) {
-          rewireUriClickEvent(item, item.uri, router);
+          const uri = item.uri;
+          item.subscribeToClickedEvent(() => {
+            Ember.run(this, function() {
+              router.transitionTo(uri);
+            });
+          });
+          item.clickAction = ClickAction.NULL;
+          item.uri = undefined;
+
+          return item;
         }
       });
 
