@@ -3,9 +3,9 @@ import appboy from 'appboy';
 
 const { Logger: { assert } } = Ember;
 
-export function initialize(application) {
+export function initialize(appInstance) {
   // TODO: 1.13.x support
-  const config = application.resolveRegistration('config:environment');
+  const config = appInstance.resolveRegistration('config:environment');
   assert(
     config.appboy.apiKey !== undefined,
     'You must set appboy.apiKey in your environment.js file for ember-appboy to work correctly.'
