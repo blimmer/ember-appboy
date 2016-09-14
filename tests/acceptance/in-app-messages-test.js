@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
@@ -13,9 +12,6 @@ test('modals with URI ClickActions handle transition correctly', function(assert
   });
   click('.ab-message-text', 'body');
   andThen(function() {
-    // There has to be a better way to do this.
-    Ember.run.later(this, function() {
-      assert.equal(currentURL(), '/in-app-messages/example-1');
-    }, 1000);
+    assert.equal(currentURL(), '/in-app-messages/example-1');
   });
 });

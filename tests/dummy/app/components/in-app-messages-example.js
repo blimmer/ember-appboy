@@ -1,6 +1,13 @@
 import Ember from 'ember';
 import layout from '../templates/components/in-app-messages-example';
 import appboy from 'appboy';
+import ENV from '../config/environment';
+
+function disableAnimationInTest(item) {
+  if (ENV.environment === 'test') {
+    item.animateIn = item.animateOut = false;
+  }
+}
 
 export default Ember.Component.extend({
   layout,
@@ -17,6 +24,7 @@ export default Ember.Component.extend({
     let modal = new appboy.ab.ModalMessage();
     modal.header  = "Woah, there...";
     modal.message = "Doing this might be a terrible idea but ,idk, here's a modal to make you think twice.";
+    disableAnimationInTest(modal);
     appboy.display.showInAppMessage(modal);
   },
 
@@ -26,6 +34,7 @@ export default Ember.Component.extend({
     modal.message = "Clicking anywhere on this modal (except the close button) will trigger a transition to the example-1 page.";
     modal.clickAction = appboy.ab.InAppMessage.ClickAction.URI;
     modal.uri = '/in-app-messages/example-1';
+    disableAnimationInTest(modal);
     appboy.display.showInAppMessage(modal);
   },
 
@@ -40,6 +49,7 @@ export default Ember.Component.extend({
     button1.uri = '/in-app-messages/example-1';
 
     modal.buttons = [button1];
+    disableAnimationInTest(modal);
     appboy.display.showInAppMessage(modal);
   },
 
@@ -59,6 +69,7 @@ export default Ember.Component.extend({
     button2.uri = '/in-app-messages/example-2';
 
     modal.buttons = [button1, button2];
+    disableAnimationInTest(modal);
     appboy.display.showInAppMessage(modal);
   },
 
@@ -74,6 +85,7 @@ export default Ember.Component.extend({
     button1.uri = '/in-app-messages/example-1';
 
     modal.buttons = [button1];
+    disableAnimationInTest(modal);
     appboy.display.showInAppMessage(modal);
   },
 
@@ -94,6 +106,7 @@ export default Ember.Component.extend({
     button2.uri = '/in-app-messages/example-2';
 
     modal.buttons = [button1, button2];
+    disableAnimationInTest(modal);
     appboy.display.showInAppMessage(modal);
   },
 });
