@@ -61,4 +61,39 @@ export default Ember.Component.extend({
     modal.buttons = [button1, button2];
     appboy.display.showInAppMessage(modal);
   },
+
+  showFullWithOneButton() {
+    let modal = new appboy.ab.FullScreenMessage();
+    modal.header  = "Fullscreen Message with One Button";
+    modal.message = "This is a fullscreen modal with a button that transitions somewhere.";
+    modal.imageUrl = "https://placeholdit.imgix.net/~text?w=640&h=480";
+
+    let button1 = new appboy.ab.InAppMessage.Button();
+    button1.text = 'Example Route 1';
+    button1.clickAction = appboy.ab.InAppMessage.ClickAction.URI;
+    button1.uri = '/in-app-messages/example-1';
+
+    modal.buttons = [button1];
+    appboy.display.showInAppMessage(modal);
+  },
+
+  showFullWithTwoButtons() {
+    let modal = new appboy.ab.FullScreenMessage();
+    modal.header  = "Fullscreen Message with Buttons";
+    modal.message = "This is a fullscreen modal with two buttons that transition somewhere.";
+    modal.imageUrl = "https://placeholdit.imgix.net/~text?w=640&h=480";
+
+    let button1 = new appboy.ab.InAppMessage.Button();
+    button1.text = 'Example Route 1';
+    button1.clickAction = appboy.ab.InAppMessage.ClickAction.URI;
+    button1.uri = '/in-app-messages/example-1';
+
+    let button2 = new appboy.ab.InAppMessage.Button();
+    button2.text = 'Example Route 2';
+    button2.clickAction = appboy.ab.InAppMessage.ClickAction.URI;
+    button2.uri = '/in-app-messages/example-2';
+
+    modal.buttons = [button1, button2];
+    appboy.display.showInAppMessage(modal);
+  },
 });
