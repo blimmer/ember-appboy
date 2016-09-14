@@ -2,7 +2,6 @@ import Ember from 'ember';
 import layout from '../templates/components/in-app-messages-example';
 import appboy from 'appboy';
 import ENV from '../config/environment';
-import ouibounce from 'ouibounce';
 
 function disableAnimationInTest(item) {
   if (ENV.environment === 'test') {
@@ -14,8 +13,6 @@ export default Ember.Component.extend({
   layout,
 
   showSlideUpMessage() {
-    let foo = ouibounce;
-    debugger;
     let message = new appboy.ab.SlideUpMessage(
       "This is a Slide-Up In-App Message!"
     );
