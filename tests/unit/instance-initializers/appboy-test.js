@@ -38,14 +38,6 @@ module('Unit | Instance Initializer | appboy', {
   },
 });
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  initialize(this.appInstance);
-
-  // you would normally confirm the results of the initializer here
-  assert.ok(true);
-});
-
 test('it calls initialize with the api key', function(assert) {
   initialize(this.appInstance);
 
