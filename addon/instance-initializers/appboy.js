@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import appboy from 'appboy';
 
+const { ab: { InAppMessage: { ClickAction } } } = appboy;
 const { Logger: { assert } } = Ember;
 
 export function initialize(appInstance) {
@@ -17,6 +18,24 @@ export function initialize(appInstance) {
 
   if (!config.appboy.coreOnly) {
     appboy.display.automaticallyShowNewInAppMessages();
+
+    const _superShowInAppMessage = appboy.display.showInAppMessage;
+
+    appboy.display.showInAppMessage = function(inAppMessage) {
+      if (inAppMessage.clickAction === ClickAction.URI && inAppMessage.uri) {
+        // If URI is set, use router for soft transition with router.js vs. hard
+        // redirect / refresh
+        const router = appInstance.get('router');
+        const targetRoute = inAppMessage.uri;
+        inAppMessage.subscribeToClickedEvent(() => {
+          router.transitionTo(targetRoute);
+        });
+        inAppMessage.clickAction = ClickAction.NULL;
+        inAppMessage.uri = undefined;
+      }
+
+      _superShowInAppMessage(inAppMessage);
+    };
   }
 
   appboy.openSession();
