@@ -4,6 +4,16 @@ import appboy from 'appboy';
 const { ab: { InAppMessage: { ClickAction } } } = appboy;
 const { Logger: { assert } } = Ember;
 
+export function rewireUriClickEvent(item, uri, router) {
+  item.subscribeToClickedEvent(() => {
+    router.transitionTo(uri);
+  });
+  item.clickAction = ClickAction.NULL;
+  item.uri = undefined;
+
+  return item;
+}
+
 export function initialize(appInstance) {
   // TODO: Ember 1.13
   const config = appInstance.resolveRegistration('config:environment');
@@ -22,17 +32,15 @@ export function initialize(appInstance) {
     const _superShowInAppMessage = appboy.display.showInAppMessage;
 
     appboy.display.showInAppMessage = function(inAppMessage) {
-      if (inAppMessage.clickAction === ClickAction.URI && inAppMessage.uri) {
-        // If URI is set, use router for soft transition with router.js vs. hard
-        // redirect / refresh
-        const router = appInstance.get('router');
-        const targetRoute = inAppMessage.uri;
-        inAppMessage.subscribeToClickedEvent(() => {
-          router.transitionTo(targetRoute);
-        });
-        inAppMessage.clickAction = ClickAction.NULL;
-        inAppMessage.uri = undefined;
-      }
+      const router = appInstance.get('router');
+
+      // If URI is set, use router for soft transition with router.js vs. hard
+      // redirect / refresh
+      [inAppMessage, ...inAppMessage.buttons].forEach(function(item) {
+        if (item.clickAction === ClickAction.URI && item.uri) {
+          rewireUriClickEvent(item, item.uri, router);
+        }
+      });
 
       _superShowInAppMessage(inAppMessage);
     };
