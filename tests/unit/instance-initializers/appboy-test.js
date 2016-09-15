@@ -7,9 +7,11 @@ import appboy from 'appboy';
 import sinon from 'sinon';
 
 let configStub,
+    ouibounceStub,
     sandbox,
     appboyInitialize,
     appboyOpenSession,
+    appboyLogCustomEvent,
     appboyAutomaticallyShowNewInAppMessages;
 
 module('Unit | Instance Initializer | appboy', {
@@ -27,8 +29,11 @@ module('Unit | Instance Initializer | appboy', {
                           .returns({ appboy: { apiKey: 'abc123' } });
       appboyInitialize = sandbox.stub(appboy, 'initialize');
       appboyOpenSession = sandbox.stub(appboy, 'openSession');
+      appboyLogCustomEvent = sandbox.stub(appboy, 'logCustomEvent');
       appboyAutomaticallyShowNewInAppMessages = sandbox.stub();
       appboy.display = { automaticallyShowNewInAppMessages: appboyAutomaticallyShowNewInAppMessages };
+      ouibounceStub = sandbox.stub();
+      define('ouibounce', [], () => { return { default: ouibounceStub }; });
     });
   },
   afterEach: function() {
@@ -61,4 +66,30 @@ test('it opens the session', function(assert) {
   initialize(this.appInstance);
 
   assert.ok(appboyOpenSession.calledOnce);
+});
+
+test('it does not initialize ouibounce by default', function(assert) {
+  initialize(this.appInstance);
+
+  assert.notOk(ouibounceStub.called);
+});
+
+test('it initializes ouibounce if logExitIntent flag is set', function(assert) {
+  configStub.returns({ appboy: { apiKey: 'abc123', logExitIntent: true } });
+
+  initialize(this.appInstance);
+
+  assert.ok(ouibounceStub.calledOnce);
+});
+
+test('it sets up the appboy callback on ouibounce if logExitIntent flag is set', function(assert) {
+  configStub.returns({ appboy: { apiKey: 'abc123', logExitIntent: true } });
+
+  initialize(this.appInstance);
+
+  // see https://www.appboy.com/documentation/Web/#exit-intent-messages
+  assert.notOk(ouibounceStub.getCall(0).args[0]);
+  const callback = ouibounceStub.getCall(0).args[1].callback;
+  callback();
+  assert.ok(appboyLogCustomEvent.withArgs('exit intent').calledOnce);
 });

@@ -5,8 +5,6 @@ import appboy from 'appboy';
 const { ab: { InAppMessage: { ClickAction } } } = appboy;
 const { Logger: { assert } } = Ember;
 
-const ouibounce = conditionalModule('ouibounce');
-
 // Since we don't include ouibounce unless you need it, we need to conditionally
 // import the module from require.
 function conditionalModule(module) {
@@ -61,6 +59,7 @@ export function initialize(appInstance) {
   }
 
   if (config.appboy.logExitIntent) {
+    let ouibounce = conditionalModule('ouibounce');
     ouibounce(false, {
       callback: function() { appboy.logCustomEvent('exit intent'); }
     });
