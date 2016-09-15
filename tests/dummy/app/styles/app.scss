@@ -32,9 +32,26 @@ body > div.ember-view {
   display: flex;
 }
 
-md-sidenav md-toolbar {
-  .icon-link:not(:first-of-type) {
-    padding-left: 20px;
+md-sidenav {
+  md-content {
+    a {
+      font-size: 1.2em;
+      text-decoration: none;
+
+      &:visited {
+        color: inherit;
+      }
+
+      &.active {
+        border-bottom: 1px black solid;
+      }
+    }
+  }
+
+  md-toolbar {
+    .icon-link:not(:first-of-type) {
+      padding-left: 20px;
+    }
   }
 }
 
