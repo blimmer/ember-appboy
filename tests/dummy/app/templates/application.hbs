@@ -3,11 +3,19 @@
      class='md-whiteframe-z2 site-sidenav'
      lockedOpen='gt-sm'}}
     {{#paper-toolbar}}
-      {{#paper-toolbar-tools}}Ember Appboy{{/paper-toolbar-tools}}
+      {{#paper-toolbar-tools}}
+        Ember Appboy
+        <span class='flex'></span>
+          <a href='https://github.com/blimmer/ember-appboy'>{{fa-icon 'github' size='lg'}}</a>
+      {{/paper-toolbar-tools}}
     {{/paper-toolbar}}
 
     {{#paper-content padding=true}}
-      {{#link-to 'index'}}Usage{{/link-to}}
+      {{#link-to 'index'}}Introduction{{/link-to}}
+    {{/paper-content}}
+
+    {{#paper-content padding=true}}
+      {{#link-to 'configuration'}}Configuration{{/link-to}}
     {{/paper-content}}
 
     {{#paper-content padding=true}}

@@ -45,6 +45,8 @@ body > div.ember-view {
 }
 
 .content {
+  overflow-y: auto;
+
   md-toolbar.md-default-theme {
     color: #000 !important;
     background-color: #F5F5F5 !important;
