@@ -32,9 +32,6 @@ install:
   - yarn install --no-lockfile
 
 script:
-  # it's annoying that i have to do this
-  # https://github.com/sass/node-sass/issues/1579#issuecomment-301541409
-  - npm rebuild node-sass
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
