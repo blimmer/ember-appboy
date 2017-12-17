@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.2.11](https://github.com/blimmer/ember-appboy/tree/0.2.11) (2017-12-17)
+[Full Changelog](https://github.com/blimmer/ember-appboy/compare/v0.2.10...0.2.11)
+
+**Merged pull requests:**
+
+- Deprecate in favor of ember-braze [\#46](https://github.com/blimmer/ember-appboy/pull/46) ([blimmer](https://github.com/blimmer))
+- Upgrade Ember [\#45](https://github.com/blimmer/ember-appboy/pull/45) ([blimmer](https://github.com/blimmer))
+
 ## [v0.2.10](https://github.com/blimmer/ember-appboy/tree/v0.2.10) (2017-08-13)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/v0.2.9...v0.2.10)
 
@@ -22,20 +30,12 @@
 
 - Move ember-require-module to runtime dependencies. [\#41](https://github.com/blimmer/ember-appboy/pull/41) ([blimmer](https://github.com/blimmer))
 
-**Closed issues:**
-
-- Could not find module `ember-require-module` [\#40](https://github.com/blimmer/ember-appboy/issues/40)
-
 ## [v0.2.7](https://github.com/blimmer/ember-appboy/tree/v0.2.7) (2017-04-06)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/v0.2.6...v0.2.7)
 
 **Fixed bugs:**
 
 - Fix missing css import [\#39](https://github.com/blimmer/ember-appboy/pull/39) ([blimmer](https://github.com/blimmer))
-
-**Closed issues:**
-
-- appboy-web-sdk 1.6.7 broke build [\#38](https://github.com/blimmer/ember-appboy/issues/38)
 
 ## [v0.2.6](https://github.com/blimmer/ember-appboy/tree/v0.2.6) (2017-01-12)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/v0.2.5...v0.2.6)
@@ -46,11 +46,6 @@
 
 ## [v0.2.5](https://github.com/blimmer/ember-appboy/tree/v0.2.5) (2016-12-20)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/v0.2.4...v0.2.5)
-
-**Fixed bugs:**
-
-- Modals with no buttons throws an exception [\#35](https://github.com/blimmer/ember-appboy/issues/35)
-- Ember \< 2.3 Tests Fail [\#6](https://github.com/blimmer/ember-appboy/issues/6)
 
 **Merged pull requests:**
 
@@ -74,12 +69,6 @@
 
 - Add codeclimate. [\#31](https://github.com/blimmer/ember-appboy/pull/31) ([blimmer](https://github.com/blimmer))
 
-**Closed issues:**
-
-- new release [\#28](https://github.com/blimmer/ember-appboy/issues/28)
-- appboy.registerAppboyPushMessages\(\) [\#27](https://github.com/blimmer/ember-appboy/issues/27)
-- Update docs for testing [\#24](https://github.com/blimmer/ember-appboy/issues/24)
-
 **Merged pull requests:**
 
 - Bump appboy-web-sdk dependency to 1.6.1. [\#30](https://github.com/blimmer/ember-appboy/pull/30) ([blimmer](https://github.com/blimmer))
@@ -91,31 +80,12 @@
 
 - passthrough options to appboy initialization [\#25](https://github.com/blimmer/ember-appboy/pull/25) ([trevorrjohn](https://github.com/trevorrjohn))
 
-**Closed issues:**
-
-- Chrome not registering for pushes [\#23](https://github.com/blimmer/ember-appboy/issues/23)
-
 **Merged pull requests:**
 
 - update testing fake api [\#26](https://github.com/blimmer/ember-appboy/pull/26) ([trevorrjohn](https://github.com/trevorrjohn))
 
 ## [v0.2.0](https://github.com/blimmer/ember-appboy/tree/v0.2.0) (2016-09-21)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/0.1.1...v0.2.0)
-
-**Implemented enhancements:**
-
-- Use appboy-web-sdk 1.6.x [\#22](https://github.com/blimmer/ember-appboy/issues/22)
-- Better URI Handling [\#12](https://github.com/blimmer/ember-appboy/issues/12)
-
-**Fixed bugs:**
-
-- Override of appboy.display.showInAppMessage is not working [\#13](https://github.com/blimmer/ember-appboy/issues/13)
-- Better URI Handling [\#12](https://github.com/blimmer/ember-appboy/issues/12)
-
-**Closed issues:**
-
-- Remove minification hack [\#18](https://github.com/blimmer/ember-appboy/issues/18)
-- Add a test for hard transitions [\#16](https://github.com/blimmer/ember-appboy/issues/16)
 
 **Merged pull requests:**
 
@@ -128,16 +98,8 @@
 ## [0.1.1](https://github.com/blimmer/ember-appboy/tree/0.1.1) (2016-09-15)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/0.1.0...0.1.1)
 
-**Closed issues:**
-
-- Complete first round of documentation [\#2](https://github.com/blimmer/ember-appboy/issues/2)
-
 ## [0.1.0](https://github.com/blimmer/ember-appboy/tree/0.1.0) (2016-09-15)
 [Full Changelog](https://github.com/blimmer/ember-appboy/compare/0.1.0-alpha.1...0.1.0)
-
-**Closed issues:**
-
-- Support Exit Intents [\#3](https://github.com/blimmer/ember-appboy/issues/3)
 
 **Merged pull requests:**
 
